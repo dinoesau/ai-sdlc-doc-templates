@@ -1,0 +1,115 @@
+<!-- ============================================================================
+TEMPLATE: Clean Architecture Rings (SVG)
+Copy this file next to your 02-Architecture document, rename the copy to
+e.g. clean-architecture-target.svg, then fill every {{PLACEHOLDER}} below.
+Delete instructional comments (the ones starting with "STEP" or "RULE")
+from your copy, or keep them, they never render.
+
+HOW TO FILL, STEP BY STEP
+1. Title block: set {{DIAGRAM TITLE}} (what this map covers, e.g. which
+   slices) and {{SUBTITLE}} (version plus date plus what was last verified).
+2. Name the four layers. Outer ring = {{OUTER LAYER}} (Frameworks/Drivers:
+   the swappable IO). Second ring = {{SECOND LAYER}} (Interface Adapters:
+   controllers, presenters, gateways). Third ring = {{THIRD LAYER}}
+   (Use Cases: application behavior). Center = {{CENTER LAYER}} (Entities:
+   domain objects). Use YOUR project's layer names, the examples are hints.
+3. List members per layer. Drivers outer (devices, web, DB, UI, external
+   interfaces). Adapters second (handlers, deps, lifespan, migrations).
+   Use cases third (loops, tools, routers, workers). Entities center
+   (state, user, session). Mark live with ● and planned with ○, exactly
+   matching the status words in your 02 sections 5.3 and 5.5.
+4. Geometry. Center is (cx,cy) = (300,390), radii R1=250 R2=190 R3=135
+   R4=70. Change them only together. Band title height follows
+   y = cy - (r_outer + r_inner) / 2, so blue ~165, second ~225, third
+   ~285, center ~390. Keep each title block between its band's two
+   strokes and clear of the neighbor blocks above and below.
+5. Side labels. Members sit on mid-side verticals at
+   x = cx +/- (r_outer + r_inner) / 2, y = cy, rotate(-90) on the left
+   and rotate(90) on the right, text-anchor middle. RULE: never park a
+   side label near the top, it collides with the centered title. Bottom
+   members use small diagonal rotations (about 38 degrees). One centered
+   bottom label is enough.
+6. Titles versus bands. A wide title cannot fit a narrow inner band, so
+   keep inner titles short (two to four words). If a title must be long,
+   accept that it crosses strokes, but never let it touch a neighbor
+   block. That was the v2-v6 lesson: Devices/Web moved to mid-sides,
+   the adapter block moved into its own band, Use Cases recentered.
+7. Right panel. One group per ring (same names as the rings), each line
+   marked ● live or ○ planned. Then a flow block with TWO flows: the
+   target flow and the shipped flow, each labeled as such. Then build
+   order (which slice lands what) plus the seam-stability note.
+8. Verify before publishing. Render in any browser and check: every
+   layer named inside its own band; no title touching a stroke or a
+   neighbor; no side label overlapping a centered title; ●/○ marks match
+   the document text; the flow matches your 02 section 6 scenario;
+   the build order matches your slices. Fix the document or the diagram,
+   never let them disagree.
+============================================================================= -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 800" font-family="Helvetica, Arial, sans-serif">
+<rect x="4" y="4" width="1232" height="792" rx="18" fill="#f4f4f4" stroke="#333" stroke-width="3"/>
+<text x="620" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#8a5a00">{{DIAGRAM TITLE}}</text>
+<text x="620" y="64" text-anchor="middle" font-size="12" font-style="italic" fill="#555">{{SUBTITLE}}</text>
+
+<!-- rings: keep cx/cy identical on all four, keep R1>R2>R3>R4 -->
+<circle cx="300" cy="390" r="250" fill="#a9cfe8" stroke="#333" stroke-width="2.5"/>
+<circle cx="300" cy="390" r="190" fill="#93d193" stroke="#333" stroke-width="2.5"/>
+<circle cx="300" cy="390" r="135" fill="#ef9e9e" stroke="#333" stroke-width="2.5"/>
+<circle cx="300" cy="390" r="70" fill="#fdf3b0" stroke="#333" stroke-width="2.5"/>
+
+<!-- STEP 4+5: outer ring. Title top-center of the outer band, members on
+     mid-side verticals and bottom diagonals. Add or delete member lines. -->
+<text x="300" y="165" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{OUTER LAYER}}</text>
+<text x="80" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#333" transform="rotate(-90 80 390)">{{MEMBER LEFT}}</text>
+<text x="520" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#333" transform="rotate(90 520 390)">{{MEMBER RIGHT}}</text>
+<text x="128" y="545" font-size="15" font-weight="bold" fill="#333" transform="rotate(38 128 545)">{{MEMBER BOTTOM LEFT}}</text>
+<text x="432" y="560" font-size="15" font-weight="bold" fill="#333" transform="rotate(-38 432 560)">{{MEMBER BOTTOM RIGHT}}</text>
+<text x="300" y="622" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{BOTTOM LABEL}}</text>
+
+<!-- STEP 4+6: second ring. Both lines must sit between this band's strokes,
+     clear of the outer title above and the third title below. -->
+<text x="300" y="225" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">{{SECOND LAYER}}</text>
+<text x="300" y="241" text-anchor="middle" font-size="11" font-family="monospace" fill="#333">{{second-layer members}}</text>
+
+<!-- STEP 4+6: third ring. Center the two-line block between this band's
+     strokes, not on the outer stroke. -->
+<text x="300" y="285" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{THIRD LAYER}}</text>
+<text x="300" y="300" text-anchor="middle" font-size="11" font-family="monospace" fill="#333">{{third-layer members}}</text>
+
+<!-- STEP 3: center. Domain objects only, no framework or IO names here. -->
+<text x="300" y="384" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{CENTER LAYER}}</text>
+<text x="300" y="402" text-anchor="middle" font-size="11" font-family="monospace" fill="#333">{{center members}}</text>
+
+<!-- arrows: dependencies point inward, keep as is -->
+<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" stroke="#333" fill="none"/></marker></defs>
+<g stroke="#333" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="150" y1="716" x2="190" y2="716"/>
+<line x1="330" y1="716" x2="370" y2="716"/>
+</g>
+<text x="30" y="720" font-size="11" font-style="italic" fill="#333">dependencies point inward</text>
+
+<!-- STEP 7: right panel. One group per ring with the SAME names as the
+     rings, ● live and ○ planned matching the document. Then target flow
+     versus shipped flow, then build order. Add or delete groups. -->
+<g font-size="12.5">
+<text x="600" y="100" font-size="17" font-weight="bold" fill="#333">{{Center group heading}}</text>
+<text x="600" y="120" fill="#333">{{● live members}} · {{○ planned members}}</text>
+
+<text x="600" y="166" font-size="17" font-weight="bold" fill="#333">{{Middle groups heading}}</text>
+<text x="600" y="186" fill="#333">{{● live}} → {{○ planned}}</text>
+
+<text x="600" y="250" font-size="17" font-weight="bold" fill="#333">{{Adapter group heading}}</text>
+<text x="600" y="270" fill="#333">{{adapter members plus seam rule}}</text>
+
+<text x="600" y="388" font-size="17" font-weight="bold" fill="#333">{{Driver group heading}}</text>
+<text x="600" y="408" fill="#333">{{swappable drivers}}</text>
+
+<text x="600" y="472" font-size="17" font-weight="bold" fill="#333">{{Flow heading, mark target-only versus shipped}}</text>
+<text x="600" y="492" font-family="monospace" font-size="12" fill="#333">{{target flow}}</text>
+<text x="600" y="510" font-family="monospace" font-size="12" fill="#333">{{second flow line}}</text>
+<text x="600" y="528" font-size="12" font-style="italic" fill="#333">{{shipped flow plus what to fix first}}</text>
+
+<text x="600" y="556" font-size="17" font-weight="bold" fill="#333">Build order</text>
+<text x="600" y="576" fill="#333">{{slice order}}</text>
+<text x="600" y="594" fill="#333">{{gates plus seam stability note}}</text>
+</g>
+</svg>

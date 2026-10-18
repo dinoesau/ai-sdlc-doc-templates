@@ -241,86 +241,25 @@ graph TB
 <!--
 WHEN TO INCLUDE: Keep when onion layering is a real confusion risk, delete otherwise.
 RULE: One diagram, four rings, every layer named inside its own band.
-Save the SVG next to this document and reference it below.
-Replace every {{placeholder}}, then delete the geometry comments when rendering.
-GEOMETRY (center cx,cy with radii R1>R2>R3>R4):
-- Band title y = cy - (r_outer + r_inner) / 2, text-anchor middle, bold.
-  Wide titles cannot fit narrow inner bands, so keep inner titles short.
-- Member labels go on mid-side verticals at x = cx +- (r_outer + r_inner) / 2,
-  y = cy, rotate(-90) left and rotate(90) right, text-anchor middle.
-  Never park a side label near the top, it collides with the centered title.
-- Bottom members use small diagonal rotations; one bottom-center label is enough.
-- Keep the title block clear of both strokes of its band, roughly centered
-  between them, same as the block is centered between neighbors above/below.
+Copy clean-architecture-rings.template.svg next to this document as
+e.g. clean-architecture-target.svg, fill it per its STEP comments, and
+reference the copy below. The template carries the full geometry rules.
 -->
 
 ![{{Diagram title, e.g. Clean Architecture target}}]({{path-to-svg, e.g. clean-architecture-target.svg}})
 
-```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 800" font-family="Helvetica, Arial, sans-serif">
-<rect x="4" y="4" width="1232" height="792" rx="18" fill="#f4f4f4" stroke="#333" stroke-width="3"/>
-<text x="620" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#8a5a00">{{DIAGRAM TITLE}}</text>
-<text x="620" y="64" text-anchor="middle" font-size="12" font-style="italic" fill="#555">{{Subtitle: version plus what was verified}}</text>
-
-<!-- rings: cx=300 cy=390 R1=250 R2=190 R3=135 R4=70, adjust together -->
-<circle cx="300" cy="390" r="250" fill="#a9cfe8" stroke="#333" stroke-width="2.5"/>
-<circle cx="300" cy="390" r="190" fill="#93d193" stroke="#333" stroke-width="2.5"/>
-<circle cx="300" cy="390" r="135" fill="#ef9e9e" stroke="#333" stroke-width="2.5"/>
-<circle cx="300" cy="390" r="70" fill="#fdf3b0" stroke="#333" stroke-width="2.5"/>
-
-<!-- outer ring: layer name top-center, members mid-sides and bottom -->
-<text x="300" y="165" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{OUTER LAYER, e.g. Frameworks · Drivers}}</text>
-<text x="80" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#333" transform="rotate(-90 80 390)">{{MEMBER LEFT}}</text>
-<text x="520" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#333" transform="rotate(90 520 390)">{{MEMBER RIGHT}}</text>
-<text x="128" y="545" font-size="15" font-weight="bold" fill="#333" transform="rotate(38 128 545)">{{MEMBER BOTTOM LEFT}}</text>
-<text x="432" y="560" font-size="15" font-weight="bold" fill="#333" transform="rotate(-38 432 560)">{{MEMBER BOTTOM RIGHT}}</text>
-<text x="300" y="622" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{BOTTOM LABEL}}</text>
-
-<!-- second ring: title block centered in its band -->
-<text x="300" y="225" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">{{SECOND LAYER, e.g. Controllers · Presenters · Gateways}}</text>
-<text x="300" y="241" text-anchor="middle" font-size="11" font-family="monospace" fill="#333">{{second-layer members}}</text>
-
-<!-- third ring: block centered between its two strokes -->
-<text x="300" y="285" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{THIRD LAYER, e.g. Use Cases}}</text>
-<text x="300" y="300" text-anchor="middle" font-size="11" font-family="monospace" fill="#333">{{third-layer members}}</text>
-
-<!-- center -->
-<text x="300" y="384" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">{{CENTER LAYER, e.g. Entities}}</text>
-<text x="300" y="402" text-anchor="middle" font-size="11" font-family="monospace" fill="#333">{{center members}}</text>
-
-<!-- inward arrows outside circles -->
-<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" stroke="#333" fill="none"/></marker></defs>
-<g stroke="#333" stroke-width="2" fill="none" marker-end="url(#ah)">
-<line x1="150" y1="716" x2="190" y2="716"/>
-<line x1="330" y1="716" x2="370" y2="716"/>
-</g>
-<text x="30" y="720" font-size="11" font-style="italic" fill="#333">dependencies point inward</text>
-
-<!-- right panel: one group per ring plus flow plus build order, add or delete groups -->
-<g font-size="12.5">
-<text x="600" y="100" font-size="17" font-weight="bold" fill="#333">{{Center group heading}}</text>
-<text x="600" y="120" fill="#333">{{● live members}} · {{○ planned members}}</text>
-
-<text x="600" y="166" font-size="17" font-weight="bold" fill="#333">{{Middle groups heading}}</text>
-<text x="600" y="186" fill="#333">{{● live}} → {{○ planned}}</text>
-
-<text x="600" y="250" font-size="17" font-weight="bold" fill="#333">{{Adapter group heading}}</text>
-<text x="600" y="270" fill="#333">{{adapter members plus seam rule}}</text>
-
-<text x="600" y="388" font-size="17" font-weight="bold" fill="#333">{{Driver group heading}}</text>
-<text x="600" y="408" fill="#333">{{swappable drivers}}</text>
-
-<text x="600" y="472" font-size="17" font-weight="bold" fill="#333">{{Flow heading, mark target-only versus shipped}}</text>
-<text x="600" y="492" font-family="monospace" font-size="12" fill="#333">{{target flow}}</text>
-<text x="600" y="510" font-family="monospace" font-size="12" fill="#333">{{second flow line}}</text>
-<text x="600" y="528" font-size="12" font-style="italic" fill="#333">{{shipped flow plus what to fix first}}</text>
-
-<text x="600" y="556" font-size="17" font-weight="bold" fill="#333">Build order</text>
-<text x="600" y="576" fill="#333">{{slice order}}</text>
-<text x="600" y="594" fill="#333">{{gates plus seam stability note}}</text>
-</g>
-</svg>
-```
+<!--
+FILL SUMMARY (full version lives as STEP comments in the template file):
+1. Title plus subtitle: scope plus version plus what was last verified.
+2. Four layer names with members marked ● live or ○ planned, matching
+   sections 5.3 and 5.5 exactly.
+3. Band titles at y = cy - (r_outer + r_inner) / 2; side members on
+   mid-side verticals, never near the top; title blocks clear of both
+   strokes of their band.
+4. Right panel: one group per ring, then target flow versus shipped flow,
+   then build order. Render in a browser and check no title touches a
+   stroke or a neighbor before publishing.
+-->
 
 ### 5.3 Component Responsibilities
 
