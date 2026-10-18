@@ -241,13 +241,14 @@ graph TB
 <!--
 WHEN TO INCLUDE: Keep when onion layering is a real confusion risk, delete otherwise.
 RULE: One diagram, four rings, every layer named inside its own band.
-HOW IT WORKS: the reference below points at a fixed filename, so you never
-edit this section. Copy clean-architecture-rings.template.svg to
-clean-architecture-target.svg next to this document, fill it per its STEP
-comments, done. The only file you touch is the .svg itself.
+HOW IT WORKS: the reference below points at the template file itself, which
+ships in this folder, so the preview renders out of the box. Fill the
+{{placeholders}} in clean-architecture-rings.template.svg per its STEP
+comments. The only file you touch is the .svg itself. To publish under a
+project-specific name, rename the svg and this reference together.
 -->
 
-![Clean architecture target rings](clean-architecture-target.svg)
+![Clean architecture target rings](clean-architecture-rings.template.svg)
 
 <!--
 FILL SUMMARY (full version lives as STEP comments in the template file):
