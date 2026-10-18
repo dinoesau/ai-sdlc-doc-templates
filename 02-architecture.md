@@ -252,13 +252,13 @@ project-specific name, rename the svg and this reference together.
 
 <!--
 FILL SUMMARY (full version lives as STEP comments in the template file):
-1. Title plus subtitle: scope plus version plus what was last verified.
-2. Four layer names with members marked ● live or ○ planned, matching
-   sections 5.3 and 5.5 exactly.
-3. Band titles at y = cy - (r_outer + r_inner) / 2; side members on
+Layer names come pre-filled, only project content is templated.
+1. Title plus subtitle plus member lines: scope, members marked ● live or
+   ○ planned, matching sections 5.3 and 5.5 exactly.
+2. Band titles stay at y = cy - (r_outer + r_inner) / 2; side members on
    mid-side verticals, never near the top; title blocks clear of both
    strokes of their band.
-4. Right panel: one group per ring, then target flow versus shipped flow,
+3. Right panel: one group per ring, then target flow versus shipped flow,
    then build order. Render in a browser and check no title touches a
    stroke or a neighbor before publishing.
 -->
