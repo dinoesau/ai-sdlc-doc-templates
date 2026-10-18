@@ -239,13 +239,34 @@ graph TB
 ### 5.2b Clean Architecture Rings (SVG)
 
 <!--
-WHEN TO INCLUDE: Keep when onion layering is a real confusion risk, delete otherwise.
-RULE: One diagram, four rings, every layer named inside its own band.
+RULE: One diagram, four rings, every layer named inside its own band. Always
+included, never deleted. If the rings feel trivial, the layering is clear,
+which is itself a finding worth showing.
 HOW IT WORKS: the reference below points at the template file itself, which
 ships in this folder, so the preview renders out of the box. Fill the
 {{placeholders}} in clean-architecture-rings.template.svg per its STEP
 comments. The only file you touch is the .svg itself. To publish under a
 project-specific name, rename the svg and this reference together.
+HOW TO PLACE EVERY MODULE (repeat for each module in section 5.3):
+1. List what the module imports. Only project imports count, stdlib and
+   typing do not move a module across rings.
+2. Assign the ring by what it knows:
+   - Knows nothing project-specific, pure domain language -> Entities.
+   - Orchestrates entities or adapters, touches no IO itself -> Use Cases.
+   - Translates outside to inside (HTTP handlers, CLI, parsers, presenters,
+     gateways, DB access, migrations) -> Controllers / Presenters / Gateways.
+   - Swappable technology (framework, DB engine, providers, dashboards,
+     CI) -> Frameworks and Drivers. Never place modules here, only tools.
+3. Write one member entry per module on its ring: name plus what it owns
+   in five words or fewer. Mark ● live or ○ planned, matching sections
+   5.3 and 5.5 exactly. A module with no card in 5.5 does not go on the
+   diagram, write the card first.
+4. Name the seam each member crosses (S1, S2...) on the right panel next
+   to its group. If a member crosses no named seam, either the seam list
+   in 5.3 is incomplete or the member does not belong there.
+5. Verify: pick any member and delete its ring in your head. If anything
+   outside still reaches it directly, the arrow is drawn wrong or the code
+   breaks the rule. Fix the code or the diagram, never let them disagree.
 -->
 
 ![Clean architecture target rings](clean-architecture-rings.template.svg)
